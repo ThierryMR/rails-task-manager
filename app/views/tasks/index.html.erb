@@ -2,17 +2,23 @@
 <p> <%= @tasks  %> </p>
 
 <% @tasks.each do |task|  %>
-  <h2> <%= task.title  %> </h2>
+
+
+   <p> <input type="checkbox" <%= "checked= 'checked'" if task.completed %> >
+
+    <%= link_to task.title, task_path(task) %></p>
+
+
 <% end %>
 
+
+
 <!-- Devo  acabar criando um outro arquivo para o form... mas beleza -->
-<form action="/tasks" method="post">
-  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-  <label for="name">Name: </label>
-  <input type="text" name="task[title]" id="title">
 
-  <label for="address">Address: </label>
-  <input type="text" name="task[address]" id="address">
 
-  <input type="submit">
-</form>
+
+<form type="checkbox" ></form>
+
+
+<%= link_to "add a new task", "../tasks/new" %>
+

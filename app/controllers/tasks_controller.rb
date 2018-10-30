@@ -1,7 +1,12 @@
 class TasksController < ApplicationController
   def create
-    @tasks = Task.find(params[:id])
-    @tasks.save
+    @task = Task.new(user_params)
+    @task.save
+    redirect_to tasks_path(@tasks)
+  end
+
+  def new
+    @task = Task.new
   end
 
   def read
@@ -24,16 +29,13 @@ class TasksController < ApplicationController
   end
 
   def show
-    @tasks = Task.find(params[:id])
+    @task = Task.find(params[:id])
   end
 
   def index
     @tasks = Task.all
   end
 
-  def new
-    @tasks = Task.new
-  end
 
   def edit
     @task = Task.find(params[:id])
@@ -43,7 +45,7 @@ class TasksController < ApplicationController
     private
 
   def user_params
-    params.require(:user).permit(:email)
+    params.require(:task).permit(:title, :details)
       # Never trust user data!
     # params.require(:restaurant).permit(:name, :address)
   end
