@@ -3,8 +3,18 @@
 <p> <%= @task.details %>  </p>
 
 
-<%= link_to "back to list", "../tasks" %>
+<%= link_to "back to list", tasks_path %>
 
 <p> <input type="checkbox" checked="checked" > This task is completed </p>
+
+<%= link_to "Edit this task", edit_task_path(@task) %>
+
+<%= link_to "Delete", task_path(@task),
+      method: :delete,
+      data: { confirm: "Are you sure?" } %>
+
+
+
+
 
 

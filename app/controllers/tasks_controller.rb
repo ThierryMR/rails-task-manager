@@ -1,8 +1,8 @@
 class TasksController < ApplicationController
   def create
-    @task = Task.new(user_params)
+    @task = Task.new(task_params)
     @task.save
-    redirect_to tasks_path(@tasks)
+    redirect_to task_path(@task)
   end
 
   def new
@@ -15,11 +15,10 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
     # Entendi mais ou menos esse params :tasks, pedir por orientacao
-    @tasks.update(params[:tasks])
 
-    @tasks.update(user_params)
+    @task.update(task_params)
 
-    redirect_to tasks_path(@tasks)
+    redirect_to tasks_path(@task)
   end
 
   def destroy
@@ -36,15 +35,13 @@ class TasksController < ApplicationController
     @tasks = Task.all
   end
 
-
   def edit
     @task = Task.find(params[:id])
-
   end
 
     private
 
-  def user_params
+  def task_params
     params.require(:task).permit(:title, :details)
       # Never trust user data!
     # params.require(:restaurant).permit(:name, :address)
